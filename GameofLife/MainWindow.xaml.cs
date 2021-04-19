@@ -24,5 +24,27 @@ namespace GameofLife
         {
             InitializeComponent();
         }
+
+        private void ButtonStart_Click(object sender, RoutedEventArgs e)
+        {
+            const int anzahlZellenBreit = 30;
+            const int anzahlZellenHoch = 30;
+
+            for (int i = 0; i< anzahlZellenHoch; i++)
+            {
+                for(int j = 0; j < anzahlZellenBreit; j++)
+                {
+                    Rectangle r = new Rectangle();
+                    r.Width = zeichenflaeche.ActualWidth / anzahlZellenBreit;
+                    r.Height = zeichenflaeche.ActualHeight / anzahlZellenHoch;
+                    r.Fill = Brushes.Violet;
+                    zeichenflaeche.Children.Add(r);
+                    Canvas.SetLeft(r,j*r.Width);
+                    Canvas.SetTop(r, i * r.Height);
+
+                }
+
+            }
+        }
     }
 }
