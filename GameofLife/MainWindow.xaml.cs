@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GameofLife
 {
@@ -29,17 +30,19 @@ namespace GameofLife
 
         Rectangle[,] felder = new Rectangle[Config.anzahlZellenBreit, Config.anzahlZellenHoch];
 
+        DispatcherTimer timer = new DispatcherTimer();
+
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
 
-            for (int i = 0; i< Config.anzahlZellenHoch; i++)
+            for (int i = 0; i < Config.anzahlZellenHoch; i++)
             {
-                for(int j = 0; j < Config.anzahlZellenBreit; j++)
+                for (int j = 0; j < Config.anzahlZellenBreit; j++)
                 {
                     Rectangle r = new()
                     {
                         Width = zeichenflaeche.ActualWidth / Config.anzahlZellenBreit - 2.0,
-                        Height = zeichenflaeche.ActualHeight / Config.anzahlZellenHoch -2.0,
+                        Height = zeichenflaeche.ActualHeight / Config.anzahlZellenHoch - 2.0,
                         Fill = Config.primColor,
                     };
 
@@ -58,7 +61,7 @@ namespace GameofLife
 
         private void R_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ((Rectangle)sender).Fill = 
+            ((Rectangle)sender).Fill =
                 (((Rectangle)sender).Fill == Config.primColor)
                     ? Config.secColor : Config.primColor;
         }
@@ -98,7 +101,7 @@ namespace GameofLife
 
                     // Felder Check
 
-                    if (felder[ iÜber , jLinks ].Fill == Config.secColor)
+                    if (felder[iÜber, jLinks].Fill == Config.secColor)
                     {
                         nachbarn++;
                     }
@@ -150,7 +153,7 @@ namespace GameofLife
                     {
                         felder[i, j].Fill = Config.primColor;
                     }
-                    else if(anzahlnachbarn[i, j] == 3)
+                    else if (anzahlnachbarn[i, j] == 3)
                     {
                         felder[i, j].Fill = Config.secColor;
                     }
