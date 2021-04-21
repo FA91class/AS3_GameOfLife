@@ -27,17 +27,22 @@ namespace GameofLife
         {
             InitializeComponent();
 
-            timer.Interval = TimeSpan.FromSeconds(0.1);
-            timer.Tick += Timer_Tick;
-        }
-
-        Rectangle[,] felder = new Rectangle[Config.anzahlZellenBreit, Config.anzahlZellenHoch];
-
-        DispatcherTimer timer = new DispatcherTimer();
-
-        private void ButtonStart_Click(object sender, RoutedEventArgs e)
-        {
             Random random = new Random();
+
+            zeichenflaeche.Measure(
+                new Size(
+                        double.PositiveInfinity,
+                        double.PositiveInfinity
+                    ));
+
+            zeichenflaeche.Arrange(
+                new Rect(
+                        0.0,
+                        0.0,
+                        zeichenflaeche.DesiredSize.Width,
+                        zeichenflaeche.DesiredSize.Height
+                    ));
+
             for (int i = 0; i < Config.anzahlZellenHoch; i++)
             {
                 for (int j = 0; j < Config.anzahlZellenBreit; j++)
@@ -60,7 +65,14 @@ namespace GameofLife
                 }
 
             }
+
+            timer.Interval = TimeSpan.FromSeconds(0.1);
+            timer.Tick += Timer_Tick;
         }
+
+        Rectangle[,] felder = new Rectangle[Config.anzahlZellenBreit, Config.anzahlZellenHoch];
+
+        DispatcherTimer timer = new DispatcherTimer();
 
         private void R_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -77,14 +89,14 @@ namespace GameofLife
                 for (int j = 0; j < Config.anzahlZellenBreit; j++)
                 {
                     int nachbarn = 0;
-                    int iÜber = i - 1;
+                    int iUEber = i - 1;
                     int iUnter = i + 1;
                     int jLinks = j - 1;
                     int jRechts = j + 1;
 
-                    if (iÜber < 0)
+                    if (iUEber < 0)
                     {
-                        iÜber = Config.anzahlZellenHoch - 1;
+                        iUEber = Config.anzahlZellenHoch - 1;
                     }
 
                     if (iUnter == Config.anzahlZellenHoch)
@@ -104,17 +116,17 @@ namespace GameofLife
 
                     // Felder Check
 
-                    if (felder[iÜber, jLinks].Fill == Config.secColor)
+                    if (felder[iUEber, jLinks].Fill == Config.secColor)
                     {
                         nachbarn++;
                     }
 
-                    if (felder[iÜber, j].Fill == Config.secColor)
+                    if (felder[iUEber, j].Fill == Config.secColor)
                     {
                         nachbarn++;
                     }
 
-                    if (felder[iÜber, jRechts].Fill == Config.secColor)
+                    if (felder[iUEber, jRechts].Fill == Config.secColor)
                     {
                         nachbarn++;
                     }

@@ -9,9 +9,9 @@ namespace GameofLife.config
 {
     class Config
     {
-        public static int anzahlZellenBreit = 20;
+        public static int anzahlZellenBreit = 90;
 
-        public static int anzahlZellenHoch = 20;
+        public static int anzahlZellenHoch = 90;
 
         public static Brush primColor = Brushes.Red;
 
