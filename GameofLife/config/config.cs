@@ -15,6 +15,6 @@ namespace GameofLife.config
 
         public static Brush primColor = Brushes.Red;
 
-        public static Brush secColor = Brushes.Green;
+        public static Brush secColor = Brushes.LightGreen;
     }
 }
