@@ -37,6 +37,7 @@ namespace GameofLife
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
+            Random random = new Random();
             for (int i = 0; i < Config.anzahlZellenHoch; i++)
             {
                 for (int j = 0; j < Config.anzahlZellenBreit; j++)
@@ -45,7 +46,7 @@ namespace GameofLife
                     {
                         Width = zeichenflaeche.ActualWidth / Config.anzahlZellenBreit - 2.0,
                         Height = zeichenflaeche.ActualHeight / Config.anzahlZellenHoch - 2.0,
-                        Fill = Config.primColor,
+                        Fill = (random.Next(0, 2) == 1) ? Config.primColor : Config.secColor,
                     };
 
                     zeichenflaeche.Children.Add(r);
@@ -165,14 +166,15 @@ namespace GameofLife
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            timer.Start();
             if (timer.IsEnabled)
             {
                 timer.Stop();
+                ButtonStartStop.Content = "Starte Animation";
             }
             else
             {
                 timer.Start();
+                ButtonStartStop.Content = "Stoppe Animation";
             }
         }
     }
