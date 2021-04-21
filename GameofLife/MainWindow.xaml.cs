@@ -26,6 +26,9 @@ namespace GameofLife
         public MainWindow()
         {
             InitializeComponent();
+
+            timer.Interval = TimeSpan.FromSeconds(0.1);
+            timer.Tick += Timer_Tick;
         }
 
         Rectangle[,] felder = new Rectangle[Config.anzahlZellenBreit, Config.anzahlZellenHoch];
@@ -34,7 +37,6 @@ namespace GameofLife
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-
             for (int i = 0; i < Config.anzahlZellenHoch; i++)
             {
                 for (int j = 0; j < Config.anzahlZellenBreit; j++)
@@ -66,7 +68,7 @@ namespace GameofLife
                     ? Config.secColor : Config.primColor;
         }
 
-        private void nextStep_Click(object sender, RoutedEventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             int[,] anzahlnachbarn = new int[Config.anzahlZellenHoch, Config.anzahlZellenBreit];
             for (int i = 0; i < Config.anzahlZellenHoch; i++)
@@ -158,6 +160,19 @@ namespace GameofLife
                         felder[i, j].Fill = Config.secColor;
                     }
                 }
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Start();
+            if (timer.IsEnabled)
+            {
+                timer.Stop();
+            }
+            else
+            {
+                timer.Start();
             }
         }
     }

@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Canvas x:Name="zeichenflaeche" HorizontalAlignment="Left" Height="350" Margin="174,47,0,0" VerticalAlignment="Top" Width="350
+        <Canvas x:Name="zeichenflaeche" HorizontalAlignment="Left" Height="350" Margin="320,34,0,0" VerticalAlignment="Top" Width="350
                 "/>
         <Button Content="Start!" HorizontalAlignment="Left" Margin="47,76,0,0" VerticalAlignment="Top" Click="ButtonStart_Click"/>
-        <Button x:Name="nextStep" Content="Nächster Schritt" HorizontalAlignment="Left" Margin="47,124,0,0" VerticalAlignment="Top" Click="nextStep_Click"/>
+        <Button x:Name="button" Content="Starte/Stoppe Animation!" HorizontalAlignment="Left" Margin="47,119,0,0" VerticalAlignment="Top" Click="button_Click"/>
     </Grid>
 </Window>
