@@ -37,7 +37,7 @@ namespace GameofLife
             {
                 for(int j = 0; j < anzahlZellenBreit; j++)
                 {
-                    Rectangle r = new Rectangle
+                    Rectangle r = new()
                     {
                         Width = zeichenflaeche.ActualWidth / anzahlZellenBreit - 2.0,
                         Height = zeichenflaeche.ActualHeight / anzahlZellenHoch -2.0,
