@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,24 +28,38 @@ namespace GameofLife
 
         private void ButtonStart_Click(object sender, RoutedEventArgs e)
         {
-            const int anzahlZellenBreit = 30;
-            const int anzahlZellenHoch = 30;
+            const int anzahlZellenBreit = 20;
+            const int anzahlZellenHoch = 20;
+            var primColor = Brushes.Violet;
+            var secColor = Brushes.Pink;
 
             for (int i = 0; i< anzahlZellenHoch; i++)
             {
                 for(int j = 0; j < anzahlZellenBreit; j++)
                 {
-                    Rectangle r = new Rectangle();
-                    r.Width = zeichenflaeche.ActualWidth / anzahlZellenBreit;
-                    r.Height = zeichenflaeche.ActualHeight / anzahlZellenHoch;
-                    r.Fill = Brushes.Violet;
-                    zeichenflaeche.Children.Add(r);
-                    Canvas.SetLeft(r,j*r.Width);
-                    Canvas.SetTop(r, i * r.Height);
+                    Rectangle r = new Rectangle
+                    {
+                        Width = zeichenflaeche.ActualWidth / anzahlZellenBreit - 2.0,
+                        Height = zeichenflaeche.ActualHeight / anzahlZellenHoch -2.0,
+                        Fill = primColor,
+                    };
 
+                    zeichenflaeche.Children.Add(r);
+
+                    Canvas.SetLeft(r, j * zeichenflaeche.ActualWidth / anzahlZellenBreit - 2.0);
+                    Canvas.SetTop(r, i * zeichenflaeche.ActualHeight / anzahlZellenHoch - 2.0);
+
+                    r.MouseDown += R_MouseDown;
                 }
 
             }
+        }
+
+        private void R_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ((Rectangle)sender).Fill = 
+                (((Rectangle)sender).Fill == Brushes.Violet)
+                    ? Brushes.Pink : Brushes.Violet;
         }
     }
 }
