@@ -176,7 +176,7 @@ namespace GameofLife
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void ButtonStartStop_Click(object sender, RoutedEventArgs e)
         {
             if (timer.IsEnabled)
             {
@@ -188,6 +188,11 @@ namespace GameofLife
                 timer.Start();
                 ButtonStartStop.Content = "Stoppe Animation";
             }
+        }
+
+        private void Feldgroesse_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
