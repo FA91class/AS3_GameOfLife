@@ -1,0 +1,17 @@
+﻿<Window x:Class="GameofLife.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameofLife"
+        mc:Ignorable="d"
+        Title="ConfigWindow" Height="225" Width="400">
+    <Grid>
+        <TextBox x:Name="zellenHoch" HorizontalAlignment="Left" Margin="40,50,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="zellenBreit" HorizontalAlignment="Left" Margin="40,73,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ColorOne" HorizontalAlignment="Left" Margin="241,50,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="ColorTwo" HorizontalAlignment="Left" Margin="241,73,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="SaveButton" Content="Speichern" HorizontalAlignment="Center" Margin="0,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.234,0.603" Click="Save_Click"/>
+
+    </Grid>
+</Window>

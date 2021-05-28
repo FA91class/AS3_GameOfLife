@@ -8,9 +8,9 @@
         Title="GameOfLife" Height="550" Width="800">
     <Grid>
         <Canvas x:Name="zeichenflaeche" HorizontalAlignment="Left" Height="455" Margin="160,39,0,0" VerticalAlignment="Top" Width="560"/>
-        <Button x:Name="ButtonStartStop" Content="Starte Animation" HorizontalAlignment="Left" Margin="37,39,0,0" VerticalAlignment="Top" Click="button_Click"/>
-        <Button x:Name="StepByStep" Content ="Schritt nach vorn"  HorizontalAlignment="Left" Margin="37,64,0,0" VerticalAlignment="Top" Width="93"/>
-        <Button x:Name="Farbwahl" Content="Farbwahl" HorizontalAlignment="Left" Margin="37,89,0,0" VerticalAlignment="Top" Width="93"/>
-        <Button x:Name="Feldgroesse" Content="Feldgroesse" HorizontalAlignment="Left" Margin="37,114,0,0" VerticalAlignment="Top" Width="93" Click="Feldgröße_Click"/>
+        <Button x:Name="ButtonStartStop" Content="Starte Animation" HorizontalAlignment="Left" Margin="37,39,0,0" VerticalAlignment="Top" Click="ButtonStartStop_Click"/>
+        <Button x:Name="StepByStep" Content ="Schritt nach vorn"  HorizontalAlignment="Left" Margin="37,64,0,0" VerticalAlignment="Top" Width="93" Click="StepByStep_Click"/>
+        <Button x:Name="Settings" Content="Einstellungen" HorizontalAlignment="Left" Margin="37,89,0,0" VerticalAlignment="Top" Width="93" Click="Settings_Click"/>
+        <Button x:Name="Beenden" Content="Beenden" HorizontalAlignment="Left" Margin="37,414,0,0" VerticalAlignment="Top" Width="93" Click="Beenden_Click"/>
     </Grid>
 </Window>
