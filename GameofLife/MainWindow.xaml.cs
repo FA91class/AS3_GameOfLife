@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,56 +24,19 @@ namespace GameofLife
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer timer = new DispatcherTimer();
+        Rectangle[,] felder = new Rectangle[0, 0];
+      
         public MainWindow()
         {
             InitializeComponent();
 
-            Random random = new Random();
-
-            zeichenflaeche.Measure(
-                new Size(
-                        double.PositiveInfinity,
-                        double.PositiveInfinity
-                    ));
-
-            zeichenflaeche.Arrange(
-                new Rect(
-                        0.0,
-                        0.0,
-                        zeichenflaeche.DesiredSize.Width,
-                        zeichenflaeche.DesiredSize.Height
-                    ));
-
-            for (int i = 0; i < Config.anzahlZellenHoch; i++)
-            {
-                for (int j = 0; j < Config.anzahlZellenBreit; j++)
-                {
-                    Rectangle r = new()
-                    {
-                        Width = zeichenflaeche.ActualWidth / Config.anzahlZellenBreit - 2.0,
-                        Height = zeichenflaeche.ActualHeight / Config.anzahlZellenHoch - 2.0,
-                        Fill = (random.Next(0, 2) == 1) ? Config.primColor : Config.secColor,
-                    };
-
-                    zeichenflaeche.Children.Add(r);
-
-                    Canvas.SetLeft(r, j * zeichenflaeche.ActualWidth / Config.anzahlZellenBreit - 2.0);
-                    Canvas.SetTop(r, i * zeichenflaeche.ActualHeight / Config.anzahlZellenHoch - 2.0);
-
-                    r.MouseDown += R_MouseDown;
-
-                    felder[i, j] = r;
-                }
-
-            }
+            createCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
 
             timer.Interval = TimeSpan.FromSeconds(0.1);
             timer.Tick += Timer_Tick;
+
         }
-
-        Rectangle[,] felder = new Rectangle[Config.anzahlZellenBreit, Config.anzahlZellenHoch];
-
-        DispatcherTimer timer = new DispatcherTimer();
 
         private void R_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -176,7 +140,55 @@ namespace GameofLife
             }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+
+        public void createCanvas(int height, int width)
+        {
+            zeichenflaeche.Children.Clear();
+
+            Random random = new Random();
+            felder = new Rectangle[height, width];
+
+
+           zeichenflaeche.Measure(
+               new Size(
+                       double.PositiveInfinity,
+                       double.PositiveInfinity
+                   ));
+
+            zeichenflaeche.Arrange(
+                new Rect(
+                        0.0,
+                        0.0,
+                        zeichenflaeche.DesiredSize.Width,
+                        zeichenflaeche.DesiredSize.Height
+                    ));
+
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < Config.anzahlZellenBreit; j++)
+                {
+                    Rectangle r = new()
+                    {
+                        Width = zeichenflaeche.ActualWidth / width - 2.0,
+                        Height = zeichenflaeche.ActualHeight / height - 2.0,
+                        Fill = (random.Next(0, 2) == 1) ? Config.primColor : Config.secColor,
+                    };
+
+                 zeichenflaeche.Children.Add(r);
+
+                    Canvas.SetLeft(r, j * zeichenflaeche.ActualWidth / width - 2.0);
+                    Canvas.SetTop(r, i * zeichenflaeche.ActualHeight / height - 2.0);
+
+                    r.MouseDown += R_MouseDown;
+
+                    felder[i, j] = r;
+                }
+
+            }
+        }
+
+        private void ButtonStartStop_Click(object sender, RoutedEventArgs e)
         {
             if (timer.IsEnabled)
             {
@@ -189,5 +201,31 @@ namespace GameofLife
                 ButtonStartStop.Content = "Stoppe Animation";
             }
         }
+
+        private void StepByStep_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Start();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Stop();
+
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            ConfigWindow configurationWindow = new ConfigWindow();
+            configurationWindow.ShowDialog();
+           
+
+
+          createCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
+        }
+
+        private void Beenden_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
     }
 }
