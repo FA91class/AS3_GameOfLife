@@ -13,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using GameofLife.config;
 
 namespace GameofLife
 {
@@ -23,15 +22,8 @@ namespace GameofLife
     /// 
 
 
-
-
     public partial class ConfigWindow : Window
     {
-
-        public static int anzahlZellenBreit;
-
-        public static int anzahlZellenHoch;
-
         public static Brush primColor;
 
         public static Brush secColor;
@@ -39,11 +31,14 @@ namespace GameofLife
         public ConfigWindow()
         {
             InitializeComponent();
-            zellenHoch.Text = GameofLife.config.Config.anzahlZellenHoch.ToString();
-            zellenBreit.Text = GameofLife.config.Config.anzahlZellenBreit.ToString();
+            zellenHoch.Text = Config.anzahlZellenHoch.ToString();
+            zellenBreit.Text = Config.anzahlZellenBreit.ToString();
 
-            ColorOne.Text = GameofLife.config.Config.primColor.ToString();
-            ColorTwo.Text = GameofLife.config.Config.secColor.ToString();
+            SolidColorBrush one = (SolidColorBrush)config.Config.primColor;
+            SolidColorBrush two = (SolidColorBrush)config.Config.secColor;
+
+            ColorOne.Color = one.Color;
+            ColorTwo.Color = two.Color;
         }
 
          private void Save_Click(object sender, RoutedEventArgs e)
@@ -52,6 +47,10 @@ namespace GameofLife
             {
                 int height = GameofLife.config.Config.anzahlZellenHoch = int.Parse(zellenHoch.Text);
                 int width = GameofLife.config.Config.anzahlZellenBreit = int.Parse(zellenBreit.Text);
+
+                GameofLife.config.Config.primColor = new SolidColorBrush(ColorOne.Color);
+                GameofLife.config.Config.secColor = new SolidColorBrush(ColorTwo.Color);
+
 
                 //MessageBox.Show("Erfolgreich Hoehe:" + GameofLife.config.Config.anzahlZellenHoch + "Erfolgreich Breite:" + GameofLife.config.Config.anzahlZellenBreit);
 
