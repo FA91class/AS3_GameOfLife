@@ -24,14 +24,14 @@ namespace GameofLife
     /// </summary>
     public partial class MainWindow : Window
     {
-        DispatcherTimer timer = new DispatcherTimer();
+        readonly DispatcherTimer timer = new();
         Rectangle[,] felder = new Rectangle[0, 0];
       
         public MainWindow()
         {
             InitializeComponent();
 
-            createCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
+            CreateCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
 
             timer.Interval = TimeSpan.FromSeconds(0.1);
             timer.Tick += Timer_Tick;
@@ -141,11 +141,11 @@ namespace GameofLife
         }
 
 
-        public void createCanvas(int height, int width)
+        public void CreateCanvas(int height, int width)
         {
             zeichenflaeche.Children.Clear();
 
-            Random random = new Random();
+            Random random = new();
             felder = new Rectangle[height, width];
 
 
@@ -213,12 +213,10 @@ namespace GameofLife
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            ConfigWindow configurationWindow = new ConfigWindow();
+            ConfigWindow configurationWindow = new();
             configurationWindow.ShowDialog();
            
-
-
-          createCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
+            CreateCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
         }
 
         private void Beenden_Click(object sender, RoutedEventArgs e)
