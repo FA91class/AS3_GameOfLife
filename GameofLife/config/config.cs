@@ -13,6 +13,10 @@ namespace GameofLife.config
 
         public static int anzahlZellenHoch = 50;
 
+        public static int cavMinHeight = 550;
+
+        public static int cavMinWidth = 800;
+
         public static Brush primColor = Brushes.Red;
 
         public static Brush secColor = Brushes.LightGreen;

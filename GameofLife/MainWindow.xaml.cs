@@ -140,6 +140,17 @@ namespace GameofLife
             }
         }
 
+        private void Canvas_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.HeightChanged)
+            {
+                zeichenflaeche.Height = ActualHeight * 0.8;
+            }
+            if (e.WidthChanged)
+            {
+                zeichenflaeche.Width = ActualWidth * 0.8;
+            }
+        }
 
         public void CreateCanvas(int height, int width)
         {
@@ -170,8 +181,8 @@ namespace GameofLife
                 {
                     Rectangle r = new()
                     {
-                        Width = zeichenflaeche.ActualWidth / width - 2.0,
-                        Height = zeichenflaeche.ActualHeight / height - 2.0,
+                        Width = zeichenflaeche.Width / width - 2.0,
+                        Height = zeichenflaeche.Height / height - 2.0,
                         Fill = (random.Next(0, 2) == 1) ? Config.primColor : Config.secColor,
                     };
 
@@ -204,18 +215,14 @@ namespace GameofLife
 
         private void StepByStep_Click(object sender, RoutedEventArgs e)
         {
-            timer.Start();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            timer.Stop();
-
+            Timer_Tick(sender, e);
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             ConfigWindow configurationWindow = new();
             configurationWindow.ShowDialog();
-           
+
             CreateCanvas(Config.anzahlZellenHoch, Config.anzahlZellenBreit);
         }
 
@@ -224,6 +231,11 @@ namespace GameofLife
             this.Close();
         }
 
-
+        private void Reset_Click(object sender, RoutedEventArgs e)
+        {
+            int height = Config.anzahlZellenHoch;
+            int width = Config.anzahlZellenBreit;
+            CreateCanvas(height, width);
+        }
     }
 }

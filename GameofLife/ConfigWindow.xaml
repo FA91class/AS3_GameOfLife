@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GameofLife" xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="GameofLife.ConfigWindow"
         mc:Ignorable="d"
-        Title="ConfigWindow" Height="225" Width="400">
+        Title="ConfigWindow" Height="225" MinHeight="225" MaxHeight="225" Width="400" MinWidth="400" MaxWidth="400">
     <Grid>
         <TextBox x:Name="zellenHoch" HorizontalAlignment="Left" Margin="40,50,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="zellenBreit" HorizontalAlignment="Left" Margin="40,73,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
