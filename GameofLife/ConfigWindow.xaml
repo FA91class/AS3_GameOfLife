@@ -12,5 +12,9 @@
         <Button x:Name="SaveButton" Content="Speichern" HorizontalAlignment="Center" Margin="0,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.234,0.603" Click="Save_Click"/>
         <syncfusion:ColorPicker x:Name="ColorOne" HorizontalAlignment="Left" Margin="255,40,0,0" VerticalAlignment="Top"/>
         <syncfusion:ColorPicker x:Name="ColorTwo"  HorizontalAlignment="Left" Margin="255,82,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hoehe:" HorizontalAlignment="Left" Height="23" Margin="36,45,0,0" VerticalAlignment="Top" Width="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="Breite:" HorizontalAlignment="Left" Height="23" Margin="36,85,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label Content="Farbe 1:" HorizontalAlignment="Left" Height="24" Margin="195,40,0,0" VerticalAlignment="Top" Width="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+        <Label Content="Farbe 2:" HorizontalAlignment="Left" Height="24" Margin="195,84,0,0" VerticalAlignment="Top" Width="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
     </Grid>
 </Window>
